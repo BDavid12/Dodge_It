@@ -1,9 +1,14 @@
 const character = document.querySelector('.character');
-const topSpike = document.querySelector('.felso');
-const bottomSpike = document.querySelector('.also');
+const topSpike = document.querySelector('.top');
+const bottomSpike = document.querySelector('.bot');
 const object = document.querySelectorAll('.object');
 const gameOver = document.querySelector('.gameover');
 const score = document.getElementById("points");
+const obsticle1 = document.getElementById('obsticle1');
+const obsticle2 = document.getElementById('obsticle2');
+const obsticle3 = document.getElementById('obsticle3');
+const scoreDisp = document.getElementById('score');
+
 
 let countdownValue = 3;
 let countdownMilliseconds = countdownValue * 100;
@@ -28,43 +33,36 @@ function getRandomInt(max) {
     return rnd;
 }
 
+function getRandomBtwn(min, max){
+    let rnd = 0;
+    while(rnd == 0 || rnd < min){
+        rnd = Math.floor(Math.random() * max);
+    }
+    return rnd;
+}
+
 class MovingObject {
     constructor(element, direction) {
       this.element = element;
       this.positionX = window.innerWidth - 50;
-      this.positionY = getRandomInt(window.innerHeight - 50);
-      this.speed = getRandomInt(5);
+      this.positionY = getRandomBtwn(window.innerHeight - (window.innerHeight - 100), window.innerHeight - 100);
+      this.speed = getRandomBtwn(2, 6);
       this.direction = direction;
     }
 
-    moveObjectLeft() {
+    moveObject() {
         this.positionX += this.speed * this.direction;
         this.element.style.left = this.positionX + 'px';
         this.element.style.top = this.positionY + 'px';
   
         if (this.positionX <= 0) {
             this.positionX = window.innerWidth - 50;
-            this.positionY = getRandomInt(window.innerHeight - 50);
-            this.speed = getRandomInt(5);
+            this.positionY = getRandomBtwn(window.innerHeight - (window.innerHeight - 100), window.innerHeight - 100);
+            this.speed = getRandomBtwn(2,6);
         }
   
-        requestAnimationFrame(() => this.moveObjectLeft());
+        requestAnimationFrame(() => this.moveObject());
     }
-
-    moveObjectRight() {
-        this.positionX += this.speed * this.direction;
-        this.element.style.right = this.positionX + 'px';
-        this.element.style.top = this.positionY + 'px';
-  
-        if (this.positionX <= 0) {
-            this.positionX = window.innerWidth - 50;
-            this.positionY = getRandomInt(window.innerHeight - 50);
-            this.speed = getRandomInt(5);
-        }
-  
-        requestAnimationFrame(() => this.moveObjectRight());
-    }
-    
     
 }
 
@@ -72,51 +70,60 @@ class MovingSpike {
     constructor(element, direction) {
         this.element = element;
         this.positionX = window.innerWidth - 50;
-        this.speed = getRandomInt(5);
+        this.speed = getRandomInt(3);
         this.direction = direction;
     }
 
 
-    moveSpikeRight() {
-        this.positionX += this.speed * this.direction;
-        this.element.style.right = this.positionX + 'px';
-
-        if (this.positionX >= window.innerWidth) {
-            this.positionX = window.innerWidth - (window.innerWidth + 50);
-            this.speed = getRandomInt(5);
-        }
-
-        requestAnimationFrame(() => this.moveSpikeRight());
-    }
-
-    moveSpikeLeft() {
+    moveSpike() {
         this.positionX += this.speed * this.direction;
         this.element.style.left = this.positionX + 'px';
 
         if (this.positionX <= 0) {
             this.positionX = window.innerWidth - 50;
-            this.speed = getRandomInt(5);
+            this.speed = getRandomInt(3);
         }
 
-        requestAnimationFrame(() => this.moveSpikeLeft());
+        requestAnimationFrame(() => this.moveSpike());
     }
 }
 
-const object1 = new MovingObject(document.getElementById('obsticle1'), -1);
-const object2 = new MovingObject(document.getElementById('obsticle2'), 1);
-const object3 = new MovingObject(document.getElementById('obsticle3'), -1);
-const spike1 = new MovingSpike(document.getElementById('spike1'), 1);
-const spike2 = new MovingSpike(document.getElementById('spike2'), 1);
+const object1 = new MovingObject(obsticle1, -1);
+const object2 = new MovingObject(obsticle2, -1);
+const object3 = new MovingObject(obsticle3, -1);
+const spike1 = new MovingSpike(document.getElementById('spike1'), -1);
+const spike2 = new MovingSpike(document.getElementById('spike2'), -1);
 const spike3 = new MovingSpike(document.getElementById('spike3'), -1);
 const spike4 = new MovingSpike(document.getElementById('spike4'), -1);
 
-object1.moveObjectLeft();
-object2.moveObjectRight();
-object3.moveObjectLeft();
-spike1.moveSpikeRight();
-spike2.moveSpikeRight();
-spike3.moveSpikeLeft();
-spike4.moveSpikeLeft();
+let temp = 0;
+
+if(temp == 0){
+    setTimeout(() => {
+        setTimeout(() => {
+            object1.moveObject();
+            obsticle1.style.visibility = "visible";
+        }, `${getRandomBtwn(1000, 1500)}`)
+        object2.moveObject();
+        obsticle2.style.visibility = "visible";
+        setTimeout(() => {
+            object3.moveObject();
+            obsticle3.style.visibility = "visible";
+        }, `${getRandomBtwn(500, 1000)}`)
+    }, "3000")
+    temp += 1;
+}
+else{
+    object1.moveObject();
+    object2.moveObject();
+    object3.moveObject();
+}
+
+
+spike1.moveSpike();
+spike2.moveSpike();
+spike3.moveSpike();
+spike4.moveSpike();
 
 function jump() {
     if (!stop) {
@@ -131,6 +138,7 @@ function jump() {
                 isJumping = false;
                 isUp = true;
                 points += 1;
+                scoreDisp.innerHTML = points;
             }, jumpDuration);
         } else {
             character.style.transition = `bottom ${jumpDuration}ms`;
@@ -139,6 +147,7 @@ function jump() {
                 isJumping = false;
                 isUp = false;
                 points += 1;
+                scoreDisp.innerHTML = points;
             }, jumpDuration);
         }
     }

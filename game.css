@@ -206,6 +206,7 @@ pointer-events: none;
     width: 100vw;
     background-color: #ffff33;
     height: 5vh;
+    z-index: 1;
 }
 
 
@@ -281,6 +282,8 @@ pointer-events: none;
     width: 50px;
     height: 50px;
     background-color: #0077b6;
+    visibility: hidden;
+    z-index: 0;
 }
 
 .bot{
@@ -302,11 +305,17 @@ pointer-events: none;
     height: 50px;
 }
 
-#countdown{
+#countdown, #score{
     position: absolute;
     color: #ffff33;
     top: 50%;
     left: 47%;
+    font-size: large;
+}
+
+#score{
+    top: 53%;
+    left: 48.5%;
 }
 
 button {
