@@ -230,7 +230,7 @@ function handleCollision() {
 }
 
 if(!stop){
-    setInterval(checkCollision, 10);
+    setInterval(checkCollision, 1);
 }
 
 
