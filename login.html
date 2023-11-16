@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang = "hu">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Dodge It | Belépés</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="regist.css">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+        
+        
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">    
+        <link rel="icon" href="icon.png"> 
+    </head>
+    <body>
+        <script src="3.7.1.min.js"></script>
+        <div class="crt">
+            <div class="container d-flex">
+                <fieldset class="urlap align-content-center">
+                  <legend align="middle" >Belépés</legend>
+                  <form name="login" id="" class="needs-validation" action="login.php" method="post">
+                    <p>
+                        <label for="name">Felhasználónév</label>
+                        <input type="text" class="form-control" name="name" id="name" placeholder="Név" value="" required>
+                    </p>
+                    <p>
+                        <label for="pass">Jelszó</label>
+                        <input type="password"  class="form-control" name="pass" id="pass" placeholder="Jelszó" value="" required>
+                    </p>
+                    <p>&nbsp;</p>
+                    <p>
+                        <input type="submit" onclick="setCookie()" name="Submit" id="Submit" value="Belépek" class="btn btn-primary btn-lg btn-light">
+                    </p>
+                  </form>
+                </fieldset>
+            </div>
+        </div>
+        <script src="login.js" type="text/javascript"></script>
+    </body>
+</html>

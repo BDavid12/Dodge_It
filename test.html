@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+   @keyframes move-it {
+  0% {
+    background-position: initial;
+  }
+  100% {
+    background-position: 100px 0px;
+  }
+}
+
+body {  
+  background: repeating-linear-gradient(
+  90deg,
+  #606dbc,
+  #606dbc 5%,
+  #465298 5%,
+  #465298 10%
+);
+  background-size: 100px 100px;
+  animation: move-it 2s linear infinite;
+}
+  </style>
+</head>
+<body>
+  <div class="screen-sized-div">
+    <!-- Your content goes here -->
+
+    <!-- Positioned div at the bottom -->
+    <div class="bottom-div">
+      This is at the bottom
+    </div>
+  </div>
+</body>
+</html>

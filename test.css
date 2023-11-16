@@ -1,0 +1,65 @@
+body {
+    margin: 0;
+    overflow: hidden;
+}
+
+.game-container {
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    background-color: #f0f0f0;
+}
+
+.triangle {
+    width: 0;
+    height: 0;
+    border-left: 25px solid transparent;
+    border-right: 25px solid transparent;
+    position: absolute;
+    left: -50px; /* Initial position outside the screen */
+}
+
+.top {
+    border-bottom: 50px solid red; /* Triangle color (change as needed) */
+    animation: fly 5s linear infinite, show 2s step-start infinite;
+}
+
+.bottom {
+    border-top: 50px solid blue; /* Triangle color (change as needed) */
+    animation: fly 5s linear 1s infinite;
+    animation-play-state: paused;
+}
+
+@keyframes fly {
+    0% {
+        left: -50px; /* Start position outside the screen on the left */
+    }
+    100% {
+        left: 100%; /* End position outside the screen on the right */
+    }
+}
+
+@keyframes show {
+    0% {
+        visibility: hidden;
+    }
+    2% {
+        visibility: visible;
+    }
+    100% {
+        visibility: hidden;
+    }
+}
+
+/* Existing CSS styles for triangles */
+
+.character {
+    width: 50px;
+    height: 50px;
+    background-color: green; /* Character color (change as needed) */
+    position: absolute;
+    top: 50%; /* Initial position for the character */
+    left: 50px; /* Initial position for the character */
+}
+
+/* Rest of the CSS */
