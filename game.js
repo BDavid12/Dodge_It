@@ -1,6 +1,7 @@
 const character = document.querySelector('.character');
 const topSpike = document.querySelector('.top');
 const bottomSpike = document.querySelector('.bot');
+const obsticle = document.querySelector('.ob');
 const object = document.querySelectorAll('.object');
 const gameOver = document.querySelector('.gameover');
 const score = document.getElementById("points");
@@ -157,6 +158,7 @@ function checkCollision() {
     const characterRect = character.getBoundingClientRect();
     const topSpikeRect = topSpike.getBoundingClientRect();
     const bottomSpikeRect = bottomSpike.getBoundingClientRect();
+    const obRect = obsticle .getBoundingClientRect();
 
     if (
         characterRect.right > topSpikeRect.left && 
@@ -173,6 +175,15 @@ function checkCollision() {
         characterRect.top < bottomSpikeRect.bottom &&
         characterRect.bottom > bottomSpikeRect.top
     ) {
+        if(!stop)
+        handleCollision();
+    }
+    else if(
+        characterRect.right > obRect.left && 
+        characterRect.left < obRect.right &&
+        characterRect.top < obRect.bottom &&
+        characterRect.bottom > obRect.top
+    ){
         if(!stop)
         handleCollision();
     }
@@ -219,7 +230,7 @@ function handleCollision() {
 }
 
 if(!stop){
-setInterval(checkCollision, 10);
+    setInterval(checkCollision, 10);
 }
 
 
