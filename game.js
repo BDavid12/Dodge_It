@@ -195,6 +195,7 @@ function handleCollision() {
     points = 0;
 }
 
+
 checkInterval = setInterval(checkCollision, 10);
 
 if(temp == 0 && !stop)
@@ -239,9 +240,6 @@ else if(!stop)
     spike3.moveSpike();
     spike4.moveSpike();
 }
-
-
-
-
-
-
+if(!stop){
+    setInterval(checkCollision, 1);
+}
