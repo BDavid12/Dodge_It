@@ -4,36 +4,38 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
-   @keyframes move-it {
-  0% {
-    background-position: initial;
-  }
-  100% {
-    background-position: 100px 0px;
-  }
-}
+    .spikey-rectangle {
+      position: relative;
+      width: 0;
+      height: 0;
+      border-left: 25px solid transparent; /* Adjust the size of the spike */
+      border-right: 25px solid transparent; /* Adjust the size of the spike */
+      margin: 50px auto;
+    }
 
-body {  
-  background: repeating-linear-gradient(
-  90deg,
-  #606dbc,
-  #606dbc 5%,
-  #465298 5%,
-  #465298 10%
-);
-  background-size: 100px 100px;
-  animation: move-it 2s linear infinite;
-}
+    .spikey-rectangle::before,
+    .spikey-rectangle::after {
+      content: '';
+      position: absolute;
+      width: 200px; /* Adjust the width of the rectangle */
+      height: 100px; /* Adjust the height of the rectangle */
+      background-color: #3498db; /* Set your desired background color */
+    }
+
+    .spikey-rectangle::before {
+      top: -25px; /* Adjust the distance of the spike from the top */
+      border-bottom: 25px solid #3498db; /* Match the background color */
+    }
+
+    .spikey-rectangle::after {
+      bottom: -25px; /* Adjust the distance of the spike from the bottom */
+      border-top: 25px solid #3498db; /* Match the background color */
+    }
   </style>
 </head>
 <body>
-  <div class="screen-sized-div">
-    <!-- Your content goes here -->
 
-    <!-- Positioned div at the bottom -->
-    <div class="bottom-div">
-      This is at the bottom
-    </div>
-  </div>
+<div class="spikey-rectangle"></div>
+
 </body>
 </html>
