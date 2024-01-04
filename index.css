@@ -193,6 +193,29 @@ pointer-events: none;
 
 /* Credit: http://aleclownes.com/2017/02/01/crt-display.html */
 
+#leaderb{
+    visibility: hidden;
+}
+
+.leaderb-table{
+    border-collapse: collapse;
+    background-color: #371843;
+    color: #d9aaff;
+    min-width: 600px;
+}
+
+.leaderb-table thead th {
+    color: #ffffff;
+    text-align: left;
+    font-weight: bold;
+    padding-top: 20px;
+    padding-left: 10px;
+    border-bottom: #fff solid;
+}
+
+.leaderb-table tbody td{
+    padding-left: 10px;
+}
 
 button {
     background-color: transparent;

@@ -22,35 +22,27 @@
                     $user_input_username = $_REQUEST['name']; 
                     $user_input_password = $_REQUEST['pass']; 
                     
-                    // Database connection settings
                     $servername = "localhost";
                     $username = "root";
                     $password = "";
                     $dbname = "weblap";
                     
-                    // Create a database connection
                     $conn = new mysqli($servername, $username, $password, $dbname);
                     
-                    // Check for database connection errors
                     if ($conn->connect_error) {
                         die("Connection failed: " . $conn->connect_error);
                     }
                     
-                    // Prepare a SQL query to retrieve the hashed password based on the username
                     $sql = "SELECT pass FROM login WHERE username = ?";
                     $stmt = mysqli_prepare($conn, $sql);
                     mysqli_stmt_bind_param($stmt, "s", $user_input_username);
 
-                    // Execute the query
                     mysqli_stmt_execute($stmt);
 
-                    // Bind the result
                     mysqli_stmt_bind_result($stmt, $stored_hashed_password);
 
-                    // Fetch the result
                     mysqli_stmt_fetch($stmt);
 
-                    // Close the statement and the database connection
                     mysqli_stmt_close($stmt);
                     mysqli_close($conn);
                     

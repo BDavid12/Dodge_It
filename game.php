@@ -34,7 +34,7 @@
                     <div class="container-fluid">
                         <div class="row text-center">GAME OVER</div>
                         <div class="row text-center"><span id="points"></span></div>
-                        <div class="row" onclick="window.open('game.html', '_self')"><button>Újra</button></div>
+                        <div class="row" onclick="window.open('game.php', '_self')"><button>Újra</button></div>
                         
                         <div class="row" onclick="window.open('index2.html', '_self')"><button>Menü</button></div>
                     </div>
@@ -43,6 +43,40 @@
         </div>
     </div>
     <script src="game.js"></script>
+    <?php
+                $servername = "localhost";
+                $username = "root";
+                $password = "";
+                $dbname = "weblap";
+
+                $conn = new mysqli($servername, $username, $password, $dbname);
+
+                if ($conn->connect_error) {
+                    die("Connection failed: " . $conn->connect_error);
+                } else {
+                    $points = $_COOKIE['points'];
+                    $originalPoints = 0;
+                    $username = $_COOKIE['username'];
+                    $sql = "SELECT points FROM login WHERE username = '$username'";
+                    $result = $conn->query($sql);
+                    
+                    if ($result->num_rows > 0) {
+                        while($row = $result->fetch_assoc()) {
+                          $originalPoints = $row["points"];
+                        }
+                    }
+
+                    if($originalPoints > $points){
+
+                    } else {
+                        $sql = "UPDATE login SET points=$points WHERE username = '$username'";
+
+                        if ($conn->query($sql) === TRUE) {
+                        }
+                    }
+                }
+                $conn->close();
+            ?>
 </body>
 </html>
 
